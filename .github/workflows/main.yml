@@ -41,6 +41,13 @@ jobs :
             name: Newman Report
             path: newman/*.html
 
+        - name: Creating Github Page Branch
+          if: always()
+          uses: peaceiris/actions-gh-pages@v4.0.0
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: newman/
+
       
 
 
