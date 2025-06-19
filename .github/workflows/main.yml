@@ -49,6 +49,27 @@ jobs :
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_dir: newman/
 
+        - name: Send Email Notifications
+          if: always()
+          uses: dawidd6/action-send-mail@v6
+          with:
+            server_address: smtp.gmail.com
+            server_port: 465
+            username: ${{ secrets.EMAIL_USERNAME }}
+            password: ${{ secrets.EMAIL_PASSWORD }} #Not the Gamil password but use the app passowrd
+            subject: Phoenix Inwarranty Flow Test Execution Notification
+            to: deeksha.shirke27@gmail.com,saagarbajad@gmail.com
+            from: ${{ secrets.EMAIL_USERNAME }}
+            body: |
+                  Hi,
+                  The Phoenix Inwarranty Flow Tests have been executed and the report has been published ,
+                  Here is the url for the same : https://deeksha2795.github.io/Phoenix-In-Warranty-Flow/
+            
+            
+            
+            
+          
+
       
 
 
