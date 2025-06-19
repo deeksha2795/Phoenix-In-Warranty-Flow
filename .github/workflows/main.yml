@@ -20,7 +20,7 @@ jobs :
         - name: Install Node js and npm
           uses: actions/setup-node@v3.9.1
           with:
-            version: '22'
+            node-version: '22'
 
         - name: Install newman and Html-extra Globally
           run:  |
@@ -33,6 +33,12 @@ jobs :
                 -e QA.postman_environment.json \
                 -d testData.csv \
                 -r cli,htmlextra
+
+        - name: Newman Report
+          uses: actions/upload-artifact@v4.6.2
+          with:
+            name: Newman Report
+            path: newman/*.html
 
       
 
